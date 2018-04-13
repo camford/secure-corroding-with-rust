@@ -1,0 +1,8 @@
+target create ../../build/release/uaf
+breakpoint set -n main
+breakpoint set -a `(void())main`+361 # call strncpy
+run
+#disas -n main
+register read rip
+continue
+

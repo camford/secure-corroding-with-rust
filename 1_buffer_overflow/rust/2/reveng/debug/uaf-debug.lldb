@@ -1,0 +1,10 @@
+target create ../../build/debug/uaf
+breakpoint set -n main
+run
+disas -n main
+register read rip
+#continue
+#register read
+breakpoint set -l 30 # strncpy(buf2, argv[1], BUFSIZE1-1);
+p argv[0]
+p argv[1] # null pointer

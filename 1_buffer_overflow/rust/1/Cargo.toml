@@ -1,0 +1,9 @@
+[package]
+name = "bo"
+version = "0.1.0"
+authors = ["Cam <code@securecode.rs>"]
+
+[build]
+rustflags = ["-D warnings"]
+
+[dependencies]
