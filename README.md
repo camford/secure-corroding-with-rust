@@ -1,5 +1,5 @@
-Rust Security Talk
-==================
+Secure Corroding with Rust
+==========================
 
 This repository contains all the sample code for the talk 'Secure Corrdoing with Rust' (BSides Canberra, 2018).
 
@@ -21,4 +21,4 @@ If you're not already familiar with [Rust](https://www.rust-lang.org/en-US/) I h
 Project Layout
 --------------
 
-Each topic in the talk has it's own directory in this respository. Any slide from the presentation with code references the specific directory where that code can be found. e.g. slide 19: dangling_pointer/2/rust
+Each topic in the talk has it's own directory in this respository. Any slide from the presentation with code references the specific directory where that code can be found. e.g. slide 10: 1_buffer_overflows/c/0/
