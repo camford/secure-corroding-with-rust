@@ -1,2 +1,0 @@
-[build]
-rustflags = ['--emit=asm,mir,llvm-ir,llvm-bc']

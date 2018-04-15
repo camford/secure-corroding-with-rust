@@ -1,16 +1,16 @@
 fn main() {
-    funcA();
-    funcB();
+    func_a();
+    func_b();
 }
 
-fn funcA() {
+fn func_a() {
     let foo = String::from("bar");
     println!("funcA(1): {}", foo);
-    let stolen = foo;
+    let _stolen = foo;
     //println!("funcA(2): {}", foo);
 }
 
-fn funcB() {
+fn func_b() {
     let foo = String::from("bar");
     println!("funcB(1): {}", foo);
     take_ownership(foo);
