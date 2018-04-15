@@ -1,7 +1,5 @@
 #!/bin/sh
 
-LINTLOG="lint.log"
-
 indent() { sed 's/^/\t/'; }
 
 # Detect if this is in a Docker container

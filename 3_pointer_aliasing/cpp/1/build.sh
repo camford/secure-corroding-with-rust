@@ -1,11 +1,20 @@
 #!/bin/sh
 
-PROJECT_ROOT=`git rev-parse --show-toplevel`
-IMAGE_NAME="cppdev"
-IMAGE_VERSION="latest"
-DOCKER_IMAGE=$IMAGE_NAME:$IMAGE_VERSION
+indent() { sed 's/^/\t/'; }
 
-if [[ "$(docker images -q $DOCKER_IMAGE 2> /dev/null)" == "" ]]; then
-    docker build -f $PROJECT_ROOT/docker/$IMAGE_NAME/Dockerfile -t $DOCKER_IMAGE $PROJECT_ROOT
+# Detect if this is in a Docker container
+if [ -f /.dockerenv ]; then
+    echo -e "[\033[32;1m+\033[0m] Building in container";
+else
+    echo -e "[\033[32;1m+\033[0m] Building locally";
 fi
-docker run -t --rm --user $(id -u):$(id -g) -v `pwd`:/tmp/build:Z $DOCKER_IMAGE /bin/sh -c 'cd /tmp/build; make'
+
+OUTPUT=$(make 2>&1)
+RESULT=$?
+echo "${OUTPUT}" | indent
+
+if [ $RESULT -eq 0 ]; then
+    echo -e "[\033[32;1m✔\033[0m] Build successful";
+else
+    echo -e "[\033[31;1m✗\033[0m] Build failed"
+fi

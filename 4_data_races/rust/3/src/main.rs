@@ -10,7 +10,7 @@ fn race() {
 
     for _ in 0..NTHREADS {
         children.push(thread::spawn(move || {
-            var.lock().unwrap() += 1;
+            *var.lock().unwrap() += 1;
         }));
     }
 
@@ -19,7 +19,7 @@ fn race() {
         let _ = child.join();
     }
 
-    if var.lock().unwrap() != NTHREADS {
+    if *var.lock().unwrap() != NTHREADS {
         println!("DATA RACE");
     }
 }

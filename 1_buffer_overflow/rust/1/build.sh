@@ -1,7 +1,5 @@
 #!/bin/sh
 
-LINTLOG="lint.log"
-
 indent() { sed 's/^/\t/'; }
 
 # Detect if this is in a Docker container
@@ -12,12 +10,12 @@ else
 fi
 
 # Indent cargo messages but retain cargo's exit code
-OUTPUT=$((cargo +nightly clippy --color always 1> /dev/null) 2>&1)
+LINTOUTPUT=$((cargo +nightly clippy --color always 1> /dev/null) 2>&1)
 RESULT=$?
 
 if [ $RESULT -eq 0 ]; then
-    cargo build
+    cargo build --color always 2>&1 | indent
 else
-    echo -e "$OUTPUT" | indent
+    echo -e "$LINTOUTPUT" | indent
     echo -e "[\033[31;1mx\033[0m] The linter doesn't like your project. See above."
 fi
